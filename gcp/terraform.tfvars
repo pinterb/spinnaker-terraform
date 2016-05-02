@@ -9,6 +9,7 @@ network_cidr = "10.0.0.0/16"
 #		engine account. It can't just be some random one.
 #
 ssh_private_key_location = "~/.ssh/google_compute_engine"
+ssh_user = "pinterb"
 
 credentials_file = "Credentials file location"
 

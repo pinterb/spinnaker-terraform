@@ -1,5 +1,5 @@
 resource "template_file" "output" {
-  template = "output.tpl"
+  template = "${file("output.tpl")}"
 
   vars {
     region           = "${var.region}"
