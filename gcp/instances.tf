@@ -9,6 +9,10 @@ resource "google_compute_instance" "bastion" {
     image = "${var.ubuntu_image}"
   }
 
+  metadata {
+    ssh-keys = "root:${file("${var.ssh_public_key_location}")}\n${var.ssh_user}:${file("${var.ssh_public_key_location}")}"
+  }
+
   connection {
     user     = "${var.ssh_user}"
     key_file = "${var.ssh_private_key_location}"
