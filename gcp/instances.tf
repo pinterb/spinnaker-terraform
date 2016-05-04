@@ -10,7 +10,10 @@ resource "google_compute_instance" "bastion" {
   }
 
   metadata {
-    ssh-keys = "root:${file("${var.ssh_public_key_location}")}\n${var.ssh_user}:${file("${var.ssh_public_key_location}")}"
+    dc       = "${var.datacenter}"
+    role     = "spinnaker-jenkins"
+    sshKeys  = "${var.ssh_user}:${file(var.ssh_public_key_location)} ${var.ssh_user}"
+    ssh_user = "${var.ssh_user}"
   }
 
   connection {
@@ -62,7 +65,10 @@ resource "google_compute_instance" "spinnaker-and-jenkins" {
   }
 
   metadata {
-    ssh-keys = "root:${file("${var.ssh_public_key_location}")}\n${var.ssh_user}:${file("${var.ssh_public_key_location}")}"
+    dc       = "${var.datacenter}"
+    role     = "spinnaker-jenkins"
+    sshKeys  = "${var.ssh_user}:${file(var.ssh_public_key_location)} ${var.ssh_user}"
+    ssh_user = "${var.ssh_user}"
   }
 
   metadata_startup_script = "/opt/spinnaker/install/first_google_boot.sh"

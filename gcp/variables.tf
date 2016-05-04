@@ -33,12 +33,12 @@ variable "ssh_user" {
 
 variable "ssh_private_key_location" {
   description = "Path to file containing private key"
-  default     = "~/.ssh/google_compute_engine"
+  default     = "~/.ssh/id_rsa"
 }
 
 variable "ssh_public_key_location" {
   description = "Path to file containing public key"
-  default     = "~/.ssh/google_compute_engine.pub"
+  default     = "~/.ssh/id_rsa.pub"
 }
 
 variable "jenkins_admin_username" {
@@ -54,4 +54,8 @@ variable "local_ip" {
 }
 
 variable "adm_bastion_incoming_cidrs" {
+}
+
+variable "datacenter" {
+  default = "gce"
 }
