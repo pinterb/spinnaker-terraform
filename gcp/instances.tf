@@ -61,6 +61,10 @@ resource "google_compute_instance" "spinnaker-and-jenkins" {
     image = "marketplace-spinnaker-release/${var.spinnaker_image}"
   }
 
+  metadata {
+    ssh-keys = "root:${file("${var.ssh_public_key_location}")}\n${var.ssh_user}:${file("${var.ssh_public_key_location}")}"
+  }
+
   metadata_startup_script = "/opt/spinnaker/install/first_google_boot.sh"
 
   service_account {
