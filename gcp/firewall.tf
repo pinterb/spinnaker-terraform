@@ -63,7 +63,7 @@ resource "google_compute_firewall" "ssh-bastion" {
 
   network = "${google_compute_network.spinnaker-network.name}"
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["${compact(concat(split(",",var.local_ip),split(",",var.adm_bastion_incoming_cidrs)))}"]
 
   target_tags = ["bastion"]
 }
